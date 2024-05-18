@@ -1,0 +1,8 @@
+services:
+  django:
+    image: account_transfer:0.0.1
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
