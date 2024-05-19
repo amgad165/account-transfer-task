@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>transfer account</title>
 </head>
 
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% block custom_head %}
+    
+{% endblock custom_head %}
+    
 
 <body>
-<nav class="bg-gray-800 p-2 mt-0 fixed w-full z-10 top-0">
+<nav class="bg-gray-800 p-2 mt-0  w-full z-10 top-0">
     <div class="container mx-auto flex flex-wrap items-center">
         <div class="flex w-1/2 justify-start text-white font-extrabold">
             <a class="text-white no-underline hover:text-white hover:no-underline" href="#">
-                <span class="text-2xl pl-2"><i class="em em-grinning"></i> Brand</span>
+                <span class="text-2xl pl-2"><i class="em em-grinning"></i> Account Transfer</span>
             </a>
         </div>
         <div class="flex w-1/2 justify-end content-center">        
-            <a class="inline-block text-blue-400 no-underline hover:text-gray-200 hover:text-underline" href="{% url 'account_transfer' %}">Accounts</a>
-
+            <a class="inline-block text-blue-400 no-underline hover:text-gray-200 hover:text-underline mr-4" href="{% url 'account_transfer' %}">Accounts</a>
+            <a class="inline-block text-blue-400 no-underline hover:text-gray-200 hover:text-underline" href="{% url 'import_accounts' %}">Import Accounts</a>
         </div>
     </div>
 </nav>
@@ -26,6 +32,8 @@
 
 {% block content %}
 {% endblock %}
+
+
 </body>
 </html>
 

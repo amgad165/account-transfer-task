@@ -1,0 +1,57 @@
+<!-- Modal -->
+<div id="myModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div class="absolute inset-0 bg-gray-900 opacity-50" onclick="closeModal()"></div>
+    <div class="bg-white p-10 rounded shadow-lg z-50 w-96">
+        <div class="modal-content">
+            <h2 class="text-center text-lg font-bold mb-4">Send Money with Account ID</h2>
+            <div class="modal-left">
+                <input type="text" id="senderAccountId" placeholder="Sender Account ID" class="mb-2 w-full px-2 py-1 border rounded">
+                <input type="text" id="amount" placeholder="Amount" class="mb-2 w-full px-2 py-1 border rounded">
+            </div>
+            <div class="modal-right">
+                <input type="text" id="receiverAccountId" placeholder="Receiver Account ID" class="mb-2 w-full px-2 py-1 border rounded">
+            </div>
+            <button onclick="submitTransfer()" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById("myModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").classList.add("hidden");
+    }
+    function submitTransfer() {
+    const senderAccountId = $('#senderAccountId').val();
+    const amount = $('#amount').val();
+    const receiverAccountId = $('#receiverAccountId').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/send_money/',
+        data: {
+            senderAccountId: senderAccountId,
+            amount: amount,
+            receiverAccountId: receiverAccountId,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            if (response.message) {
+                alert(response.message);
+                location.reload(); // Reload the page on success
+            }
+        },
+        error: function(xhr, status, error) {
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+                alert(xhr.responseJSON.error);
+            } else {
+                alert('An error occurred. Please try again.');
+            }
+            console.error('Error:', error);
+        }
+    });
+}
+</script>
