@@ -21,7 +21,7 @@ This project is a Django-based web application for managing accounts, transferri
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/amgad165/account-transfer-task.git
-    cd account_transfer
+    
     ```
 
 2. **Create the Docker image and start the containers**:
